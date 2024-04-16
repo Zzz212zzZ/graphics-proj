@@ -2,6 +2,8 @@
 /* start css.sty */
 .cmr-17{font-size:170%;}
 .cmr-12{font-size:120%;}
+.cmtt-10{font-family: monospace,monospace;}
+.cmr-9{font-size:90%;}
 p{margin-top:0;margin-bottom:0}
 p.indent{text-indent:0;}
 p + p{margin-top:1em;}
@@ -138,6 +140,8 @@ pre.listings{font-family: monospace,monospace; white-space: pre-wrap; margin-top
 pre.lstlisting{font-family: monospace,monospace; white-space: pre-wrap; margin-top:0.5em; margin-bottom:0.5em; }
 pre.lstinputlisting{ font-family: monospace,monospace; white-space: pre-wrap; }
 .lstinputlisting .label{margin-right:0.5em;}
+.rotatebox{display: inline-block;}
+div.subfigure {text-align:center;display:inline-block; max-width:45%;}
 body{max-width:50em; margin: 2em auto;}
 body{font-family: Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", Georgia, serif;}
  span.verb, span.cmtt-10, span.cmtt-8{font-family:monospace,monospace;font-size:1em}
