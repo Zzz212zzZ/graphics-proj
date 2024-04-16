@@ -11,17 +11,55 @@
 \newcommand\urllink[2]{#1\footurl{#2}}
 \newcommand\foothref[3]{#1\footnote{\href{#2}{#3}}}
 \usepackage{upquote}
+\usepackage{graphicx} % For including graphics
+\usepackage{subcaption} % For creating subfigures
 
 \begin{document}
 
 \maketitle
+% summarize what you have accomplished, preliminary results, reflect on progress relative to your plan, and update your work plan as appropriate
+
+The three-page slides are published at \url{https://drive.google.com/file/d/1w36IwNipihc5QhI1VJDkqmymObUJ4fVB/view?usp=sharing}, and the demo video link is published at \url{https://drive.google.com/file/d/1GqzvNQNkeHD_rDhUS0nEgtIZoKsKWUai/view?usp=sharing}.
 
 \section{Summarization}
 
+\hspace*{1em}In this project, our group will simulate the fluid within a tank, and then we will simulate the real-case scenario when a ball falls into and interacts with the fluid (which many fluids will bounce out). Currently, we have done a preliminary and basic implementation (in which some unreality will occur) for this scenario, including the demo for water (in the form of discrete water-drop particles), as well as the preliminary simulation of the interaction after the ball drops and water particle splashed. 
+
 \section{Preliminary Results}
 
+\hspace*{1em}The below three figures are captured from our current preliminary simulation results. We have done a demo-simulation of the fluid of water. In this scenario, water - in the form of water-drop particles, falls down from a "spawner" and spreads across the container tank. 
+
+\noindent\hspace*{1em} We then do a preliminary simulation of the ball that falls into the water pool and interacts with the water particles. Ball falls at different velocities will lead to different results of interaction with water, for example, more water will be splashed out and will be splashed higher. 
+
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}[b]{0.33\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{water_model_mode.png}
+        \caption{Water in Scene View}
+        \label{fig:higher_velocity}
+    \end{subfigure}%
+    \hfill % Adds horizontal space between the subfigures
+    \begin{subfigure}[b]{0.33\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{water_game_mode.png}
+        \caption{Water in Game Mode}
+        \label{fig:lower_velocity}
+    \end{subfigure}
+        \begin{subfigure}[b]{0.33\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{ball_water.png}
+        \caption{Ball drops in Water}
+        \label{fig:lower_velocity}
+    \end{subfigure}
+\end{figure}
 
 \section{Reflection}
+\hspace*{1em} The above is a preliminary simulation demo for the water and its interaction with the ball. More refinement is needed, as seen in the figure, the scenario when water splashed out is not real. 
+\noindent\hspace*{1em} As can be seen, we simulate the water in terms of discrete water drops, just like those "ocean balls" in children's amusement parks. We will further make the simulation of water more real.
+
+% Figure 3: water with tuned parameters
+
 
 
 % \section{Introduction}
