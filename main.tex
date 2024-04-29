@@ -1,7 +1,7 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
 
-\title{Team 39: CS 184 Milestone}
+\title{Team 39 Final Report: Fluid Simulation}
 \author{Yekang Chang, Jie Zeng, Liang Yang, Silu Chu}
 % \date{April 2024}
 \usepackage{hyperref}
@@ -19,14 +19,33 @@
 \maketitle
 % summarize what you have accomplished, preliminary results, reflect on progress relative to your plan, and update your work plan as appropriate
 
-The three-page slides are published at \url{https://drive.google.com/file/d/1w36IwNipihc5QhI1VJDkqmymObUJ4fVB/view?usp=sharing}, and the demo video link is published at \url{https://drive.google.com/file/d/1GqzvNQNkeHD_rDhUS0nEgtIZoKsKWUai/view?usp=sharing}.
+The demo video link is published at \url{https://drive.google.com/file/d/1GqzvNQNkeHD_rDhUS0nEgtIZoKsKWUai/view?usp=sharing}.
 
-\section{Summarization}
+\section{Abstract}
+
+% A paragraph summary of the entire project.
 
 \hspace*{1em}In this project, our group, building on a tutorial \foothref{\textit{Simulating Fluids}}{https://www.youtube.com/watch?v=rSKMYc1CQHE&t=1396s}{\texttt{https://www.youtube.com/watch?v=rSKMYc1CQHE\&t=1396s}},
-  will simulate the fluid within a tank, and then we will simulate the real-case scenario when a ball falls into and interacts with the fluid (which many liquid drops will bounce out). Currently, we have done a preliminary and basic implementation (in which some unreality will occur) for this scenario, including the demo for fluid (in the form of discrete liquid drops), as well as the preliminary simulation of the interaction after the ball drops and pluid particle splashed. 
+  will simulate the fluid within a tank, and then we will simulate the real-case scenario when a ball falls into and interacts with the fluid (which many liquid drops will bounce out).We have implemented the fluid in a more vivid and real way, as well as the simulation of the interaction after the ball drops and fluid particle splashed. 
 
-\section{Preliminary Results}
+\section{Technical approach}
+% - A 1-2 page summary of your technical approach, techniques used, algorithms implemented, etc. (use references to papers or other resources for further detail). Highlight how your approach varied from the references used (did you implement a subset, or did you change or enhance anything), the unique decisions you made and why.
+% - A description of problems encountered and how you tackled them.
+% - A description of lessons learned.
+
+\subsection{Spawner, Interaction between particles}
+
+
+\subsection{Performance Improvement}
+\hspace*{1em} 
+
+
+\subsection{Bouncing Sphere}
+
+
+\subsection{Improving Shader}
+
+\section{Results}
 
 \hspace*{1em}The below three figures are captured from our current preliminary simulation results. We have done a demo-simulation of the fluid. In this scenario, the fluid - simulated in the form of liquid drops, falls down from a "spawner" and spreads across the container tank. 
 
@@ -55,9 +74,16 @@ The three-page slides are published at \url{https://drive.google.com/file/d/1w36
     \end{subfigure}
 \end{figure}
 
-\section{Reflection}
-\hspace*{1em} The above figures are preliminary simulation demos for the fluid and its interaction with the ball. More refinement is needed, for example, as seen in the figure, the scenario when liquid drops splashed out is not real. 
-\noindent\hspace*{1em} In addition, we current simulate the fluid in the form of discrete liquid drops, just like those "ocean balls" in children's amusement parks. We will further make the simulation of fluid more real.
+\section{References}
+123
+
+
+\section{Contributions Distribution}
+12
+
+% \section{Reflection}
+% \hspace*{1em} The above figures are preliminary simulation demos for the fluid and its interaction with the ball. More refinement is needed, for example, as seen in the figure, the scenario when liquid drops splashed out is not real. 
+% \noindent\hspace*{1em} In addition, we current simulate the fluid in the form of discrete liquid drops, just like those "ocean balls" in children's amusement parks. We will further make the simulation of fluid more real.
 
 % Figure 3: water with tuned parameters
 
