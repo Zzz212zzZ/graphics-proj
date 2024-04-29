@@ -1,6 +1,6 @@
 <!DOCTYPE html> 
 <html lang='en-US' xml:lang='en-US'> 
-<head> <title>Team 39: CS 184 Milestone</title> 
+<head> <title>Team 39 Final Report: Fluid Simulation</title> 
 <meta charset='utf-8' /> 
 <meta content='TeX4ht (https://tug.org/tex4ht/)' name='generator' /> 
 <meta content='width=device-width,initial-scale=1' name='viewport' /> 
@@ -15,39 +15,51 @@
 
                                                                   
 
-<h2 class='titleHead'>Team 39: CS 184 Milestone</h2>
+<h2 class='titleHead'>Team 39 Final Report: Fluid Simulation</h2>
 <div class='author'><span class='cmr-12'>Yekang Chang, Jie Zeng, Liang Yang, Silu Chu</span></div><br />
-<div class='date'><span class='cmr-12'>April 17, 2024</span></div>
+<div class='date'><span class='cmr-12'>April 29, 2024</span></div>
    </div>
-<!-- l. 22 --><p class='indent'>   The three-page slides are published at 
-<a class='url' href='https://drive.google.com/file/d/1w36IwNipihc5QhI1VJDkqmymObUJ4fVB/view?usp=sharing'><span class='cmtt-10'>https://drive.google.com/file/d/1w36IwNipihc5QhI1VJDkqmymObUJ4fVB/view?usp=sharing</span></a>,
-and the demo video link is published at 
+<!-- l. 22 --><p class='indent'>   The demo video link is published at 
 <a class='url' href='https://drive.google.com/file/d/1GqzvNQNkeHD_rDhUS0nEgtIZoKsKWUai/view?usp=sharing'><span class='cmtt-10'>https://drive.google.com/file/d/1GqzvNQNkeHD_rDhUS0nEgtIZoKsKWUai/view?usp=sharing</span></a>.
 </p>
-   <h3 class='sectionHead' id='summarization'><span class='titlemark'>1   </span> <a id='x1-10001'></a>Summarization</h3>
-<!-- l. 26 --><p class='noindent'>    In this project, our group, building on a tutorial <a href='https://www.youtube.com/watch?v=rSKMYc1CQHE&amp;t=1396s'><span class='cmti-10'>Simulating Fluids</span></a>, will
-simulate the fluid within a tank, and then we will simulate the real-case
-scenario when a ball falls into and interacts with the fluid (which many
-liquid drops will bounce out). Currently, we have done a preliminary and
-basic implementation (in which some unreality will occur) for this scenario,
-including the demo for fluid (in the form of discrete liquid drops), as well as the
-preliminary simulation of the interaction after the ball drops and pluid particle
+   <h3 class='sectionHead' id='abstract'><span class='titlemark'>1   </span> <a id='x1-10001'></a>Abstract</h3>
+<!-- l. 28 --><p class='noindent'>    In this project, our group, building on a tutorial <a href='https://www.youtube.com/watch?v=rSKMYc1CQHE&amp;t=1396s'><span class='cmti-10'>Simulating Fluids</span></a>, will simulate
+the fluid within a tank, and then we will simulate the real-case scenario when a ball
+falls into and interacts with the fluid (which many liquid drops will bounce
+out).We have implemented the fluid in a more vivid and real way, as well
+as the simulation of the interaction after the ball drops and fluid particle
 splashed.
-</p><!-- l. 29 --><p class='noindent'>
+</p><!-- l. 31 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead' id='preliminary-results'><span class='titlemark'>2   </span> <a id='x1-20002'></a>Preliminary Results</h3>
-<!-- l. 31 --><p class='noindent'>    The below three figures are captured from our current preliminary simulation
+   <h3 class='sectionHead' id='technical-approach'><span class='titlemark'>2   </span> <a id='x1-20002'></a>Technical approach</h3>
+<!-- l. 36 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='spawner-interaction-between-particles'><span class='titlemark'>2.1   </span> <a id='x1-30002.1'></a>Spawner, Interaction between particles</h4>
+<!-- l. 39 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='performance-improvement'><span class='titlemark'>2.2   </span> <a id='x1-40002.2'></a>Performance Improvement</h4>
+<!-- l. 40 --><p class='noindent'> 
+                                                                  
+
+                                                                  
+</p><!-- l. 43 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='bouncing-sphere'><span class='titlemark'>2.3   </span> <a id='x1-50002.3'></a>Bouncing Sphere</h4>
+<!-- l. 46 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='improving-shader'><span class='titlemark'>2.4   </span> <a id='x1-60002.4'></a>Improving Shader</h4>
+<!-- l. 48 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='results'><span class='titlemark'>3   </span> <a id='x1-70003'></a>Results</h3>
+<!-- l. 50 --><p class='noindent'>    The below three figures are captured from our current preliminary simulation
 results. We have done a demo-simulation of the fluid. In this scenario, the fluid -
 simulated in the form of liquid drops, falls down from a ”spawner” and spreads across
 the container tank.
-</p><!-- l. 33 --><p class='noindent'>     We then do a preliminary simulation of the ball that falls into the pool and
+</p><!-- l. 52 --><p class='noindent'>     We then do a preliminary simulation of the ball that falls into the pool and
 interacts with the liquid drops. Ball falls at different velocities will lead to different
 results of interaction with fluid. For example, when the ball falls from higher places
 or large velocity, more liquid drops will be splashed out, and will be splashed
 higher.
-                                                                  
-
-                                                                  
 </p>
    <figure class='figure'> 
 
@@ -58,23 +70,22 @@ higher.
 
                                                                   
 <div class='subfigure'>
-<!-- l. 37 --><p class='noindent'></p><!-- l. 39 --><p class='noindent'><img alt='PIC' height='102' src='water_model_mode.png' width='102' /> <a id='x1-2001r1'></a></p>
+<!-- l. 56 --><p class='noindent'></p><!-- l. 58 --><p class='noindent'><img alt='PIC' height='102' src='water_model_mode.png' width='102' /> <a id='x1-7001r1'></a></p>
 <div class='caption'><span class='id'><span class='cmr-9'>(a) </span></span><span class='content'><span class='cmr-9'>Water in Scene View</span>   </span></div></div>                                            <div class='subfigure'>
-<!-- l. 44 --><p class='noindent'></p><!-- l. 46 --><p class='noindent'><img alt='PIC' height='102' src='water_game_mode.png' width='102' /> <a id='x1-2002r2'></a></p>
+<!-- l. 63 --><p class='noindent'></p><!-- l. 65 --><p class='noindent'><img alt='PIC' height='102' src='water_game_mode.png' width='102' /> <a id='x1-7002r2'></a></p>
 <div class='caption'><span class='id'><span class='cmr-9'>(b) </span></span><span class='content'><span class='cmr-9'>Water in Game Mode</span>  </span></div></div> <div class='subfigure'>
-<!-- l. 50 --><p class='noindent'></p><!-- l. 52 --><p class='noindent'><img alt='PIC' height='102' src='ball_water.png' width='102' /> <a id='x1-2003r3'></a></p>
+<!-- l. 69 --><p class='noindent'></p><!-- l. 71 --><p class='noindent'><img alt='PIC' height='102' src='ball_water.png' width='102' /> <a id='x1-7003r3'></a></p>
 <div class='caption'><span class='id'><span class='cmr-9'>(c) </span></span><span class='content'><span class='cmr-9'>Ball drops in Water</span>    </span></div></div>
                                                                   
 
                                                                   
    </figure>
-   <h3 class='sectionHead' id='reflection'><span class='titlemark'>3   </span> <a id='x1-30003'></a>Reflection</h3>
-<!-- l. 59 --><p class='noindent'>     The above figures are preliminary simulation demos for the fluid and its
-interaction with the ball. More refinement is needed, for example, as seen in the
-figure, the scenario when liquid drops splashed out is not real.      In addition, we
-current simulate the fluid in the form of discrete liquid drops, just like those ”ocean
-balls” in children’s amusement parks. We will further make the simulation of fluid
-more real.
+   <h3 class='sectionHead' id='references'><span class='titlemark'>4   </span> <a id='x1-80004'></a>References</h3>
+<!-- l. 78 --><p class='noindent'>123
+</p><!-- l. 81 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='contributions-distribution'><span class='titlemark'>5   </span> <a id='x1-90005'></a>Contributions Distribution</h3>
+<!-- l. 82 --><p class='noindent'>12
 </p>
     
 </body> 
