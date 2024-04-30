@@ -16,14 +16,14 @@
                                                                   
 
 <h2 class='titleHead'>Team 39 Final Report: Fluid Simulation</h2>
-<div class='author'><span class='cmr-12'>Yekang Chang, Jie Zeng, Liang Yang, Silu Chu</span></div><br />
-<div class='date'><span class='cmr-12'>April 29, 2024</span></div>
+<div class='author'><span class='cmr-12'>Yekang Chang, Jie Zeng, Silu Chu, Liang Yang</span></div><br />
+<div class='date'><span class='cmr-12'>April 30, 2024</span></div>
    </div>
 <!-- l. 22 --><p class='indent'>   The demo video link is published at 
-<a class='url' href='https://drive.google.com/file/d/1GqzvNQNkeHD_rDhUS0nEgtIZoKsKWUai/view?usp=sharing'><span class='cmtt-10'>https://drive.google.com/file/d/1GqzvNQNkeHD_rDhUS0nEgtIZoKsKWUai/view?usp=sharing</span></a>.
+<a class='url' href='https://drive.google.com/file/d/1LMpycsC-qMtw3NhOV_5KMmnzrUuYepJs/view?usp=drive_link'><span class='cmtt-10'>https://drive.google.com/file/d/1LMpycsC-qMtw3NhOV_5KMmnzrUuYepJs/view?usp=drive_link</span></a>.
 </p>
    <h3 class='sectionHead' id='abstract'><span class='titlemark'>1   </span> <a id='x1-10001'></a>Abstract</h3>
-<!-- l. 28 --><p class='noindent'>    In this project, our group, building on a tutorial <a href='https://www.youtube.com/watch?v=rSKMYc1CQHE&amp;t=1396s'><span class='cmti-10'>Simulating Fluids</span></a>, will simulate
+<!-- l. 28 --><p class='noindent'>     In this project, our group, building on a tutorial <a href='https://www.youtube.com/watch?v=rSKMYc1CQHE&amp;t=1396s'><span class='cmti-10'>Simulating Fluids</span></a>, will simulate
 the fluid within a tank, and then we will simulate the real-case scenario when a ball
 falls into and interacts with the fluid (which many liquid drops will bounce
 out).We have implemented the fluid in a more vivid and real way, as well
@@ -35,27 +35,173 @@ splashed.
 <!-- l. 36 --><p class='noindent'>
 </p>
    <h4 class='subsectionHead' id='spawner-interaction-between-particles'><span class='titlemark'>2.1   </span> <a id='x1-30002.1'></a>Spawner, Interaction between particles</h4>
-<!-- l. 39 --><p class='noindent'>
-</p>
-   <h4 class='subsectionHead' id='performance-improvement'><span class='titlemark'>2.2   </span> <a id='x1-40002.2'></a>Performance Improvement</h4>
-<!-- l. 40 --><p class='noindent'> 
+<!-- l. 37 --><p class='noindent'>     In our water simulation project, the Spawner3D class is crucial for generating the
+initial set of particles that populate the simulation space. This section will cover how
+the Spawner3D class functions and the key interactions between particles that drive
+the realistic simulation of fluids.
                                                                   
 
                                                                   
-</p><!-- l. 43 --><p class='noindent'>
+</p><!-- l. 39 --><p class='noindent'>
 </p>
-   <h4 class='subsectionHead' id='bouncing-sphere'><span class='titlemark'>2.3   </span> <a id='x1-50002.3'></a>Bouncing Sphere</h4>
-<!-- l. 46 --><p class='noindent'>
+   <h5 class='subsubsectionHead' id='spawnerd-class'><span class='titlemark'>2.1.1   </span> <a id='x1-40002.1.1'></a>Spawner3D Class</h5>
+<!-- l. 40 --><p class='noindent'>     The Spawner3D class initializes particles within a cubic volume, centered at
+a specified centre and sized according to size. The numParticlesPerAxis
+defines how densely particles are placed along each axis, resulting in a total of
+<span class='cmmi-10'>numParticlesPerAxis</span><sup><span class='cmr-7'>3</span></sup> particles. Properties such as initialVel set the initial velocity
+of particles, and jitterStrength introduces randomness to particle placement,
+enhancing realism by preventing uniform spacing.
+</p><!-- l. 42 --><p class='indent'>   The ’GetSpawnData’ Method computes the initial positions and velocities for
+each particle. It employs a three-dimensional nested loop, iterating over each axis to
+calculate the position of particles based on their relative location in the grid.
+The addition of a random jitter (UnityEngine.Random.insideUnitSphere *
+jitterStrength) to each particle’s position helps simulate a more natural
+particle distribution. Each particle is assigned the initial velocity specified by
+initialVel.
+</p><!-- l. 44 --><p class='noindent'>
 </p>
-   <h4 class='subsectionHead' id='improving-shader'><span class='titlemark'>2.4   </span> <a id='x1-60002.4'></a>Improving Shader</h4>
-<!-- l. 48 --><p class='noindent'>
+   <h5 class='subsubsectionHead' id='interaction-between-particles'><span class='titlemark'>2.1.2   </span> <a id='x1-50002.1.2'></a>Interaction between Particles</h5>
+<!-- l. 45 --><p class='noindent'>     The ”Simulation3D” class manages the simulation’s lifecycle, handling updates
+per frame and integrating physical interactions between particles. It employs
+simulation settings like ”timeScale” for controlling simulation speed and
+”fixedTimeStep” to toggle between fixed and variable time steps. Physics properties
+such as ”gravity” and ”collisionDamping” affect how particles interact with gravity
+and how they respond to collisions.
+</p><!-- l. 47 --><p class='indent'>   Particle interactions are governed by compute shaders that calculate
+physical forces acting on each particle. This includes forces due to pressure,
+viscosity, and external influences like gravity. The system uses spatial hashing,
+implemented in the compute shader, to efficiently manage and query particle
+neighborhoods, essential for scaling the simulation to a large number of
+particles.
+</p><!-- l. 49 --><p class='indent'>   The ”FluidSim3D.compute” shader script updates particle states including
+position and velocity. The shader functions handle different aspects of the simulation:
+”UpdatePositions” updates particle positions based on velocities, ”ResolveCollisions”
+ensures particles remain within bounds by adjusting positions and velocities upon
+collisions, and ”ResolveSphereCollision” dynamically adjusts interactions when
+particles collide with a moving sphere.
+</p><!-- l. 51 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead' id='results'><span class='titlemark'>3   </span> <a id='x1-70003'></a>Results</h3>
-<!-- l. 50 --><p class='noindent'>    The below three figures are captured from our current preliminary simulation
+   <h4 class='subsectionHead' id='performance-improvement-for-large-number-of-particles'><span class='titlemark'>2.2   </span> <a id='x1-60002.2'></a>Performance Improvement for Large Number of Particles</h4>
+<!-- l. 52 --><p class='noindent'>     After the simulation model for particles and the interaction between them are
+                                                                  
+
+                                                                  
+established, we need to elevate the performance when we need to simulate large
+number of particles, otherwise the animation will not go smooth. We do
+the performance improvement in the process of calculating densities and
+pressure forces for a certain particle, which we avoid looping over all particles
+that lie outside the smoothing radius, as they contribute nothing to the
+calculation.
+</p><!-- l. 54 --><p class='noindent'>
+</p>
+   <h5 class='subsubsectionHead' id='optimize-particle-lookup'><span class='titlemark'>2.2.1   </span> <a id='x1-70002.2.1'></a>Optimize Particle Lookup</h5>
+<!-- l. 56 --><p class='noindent'>    To achieve this, we partition the space of particles into grids, with certain number
+of particles lying inside each grid cells, and the size of the grid cells is set to be the
+”smoothing radius”. As a result, we only need to consider particles lying inside the
+3*3 grids of cells around the center of circle when calculating the interaction forces
+for a certain particle.
+</p><!-- l. 58 --><p class='indent'>   But we want to convert the whole simulation to a compute shader at some point,
+and on the GPU we do need to specify ahead of time how much memory we’re going
+to use. A GPU-friendly approach is adopted from the <a href='https://web.archive.org/web/20140725014123/https://docs.nvidia.com/cuda/samples/5\protect \global \let \OT1\textunderscore \unhbox \voidb@x {\unhbox \voidb@x \special {t4ht@95}x}\OT1\textunderscore Simulations/particles/doc/particles.pdf'><span class='cmti-10'>paper</span></a>, so that we
+don’t need to know the dimensions of the grid ahead of time, meaning that
+particles can travel anywhere in the world, and it’ll still work. We first create a
+single array with size to be maximum number of particles within the grid
+map.
+</p><!-- l. 60 --><p class='indent'>   For each particle in the array, we calculate the coordinate of the grid cell it is in.
+We need to do hashing in order to turn the coodinate of the cell (within the grid)
+into a single number, and also get the key of this certain coordinate (”cell
+key”), for example, do modulo by the size of array. Then, each particle within
+the array is associated with a ”cell key” it is in. To efficiently loop over
+the array, we want to sort the array based on ”cell key” in order to let the
+particles within the same grid cell (same ”cell key”) staying next to each
+other in the array. The new sorted array is called <span class='cmti-10'>spatialLookup</span>. Another
+array called <span class='cmti-10'>startIndices </span>is established, with element at position <span class='cmti-10'>i </span>to be the
+index of first element in array <span class='cmti-10'>spatialLookup </span>that is in ”cell key” with value
+<span class='cmti-10'>i</span>. We can use the array <span class='cmti-10'>startIndices </span>to quickly locate all the particles in
+<span class='cmti-10'>spatialLookup </span>that we are interested in (particles storing in a particular grid
+cell). To avoid the problem of locating particles in different grid cells but
+hash to the same ”cell key”, we will do the distance checking for 2 cells
+to ensure they are exactly in the same grid cell and inside the smoothing
+radius.
+</p><!-- l. 62 --><p class='indent'>   The <span class='cmti-10'>UpdateSpatialLookup() </span>function will update the <span class='cmti-10'>spatialLookup </span>array
+whenever the points moved, which include creating the <span class='cmti-10'>spatialLookup </span>using
+hashing, sorting it based on cell key, and generate the <span class='cmti-10'>startIndices</span>. The
+<span class='cmti-10'>ForeachPointWithinRadius() </span>function will find all of the (particle) points within
+the smoothing radius of a certain particle. It will loop over all the 3*3 grid
+cells around the particle and process the particle information in these grid
+                                                                  
+
+                                                                  
+cells.
+</p><!-- l. 64 --><p class='noindent'>
+</p>
+   <h5 class='subsubsectionHead' id='particle-movement-simulation-improvement'><span class='titlemark'>2.2.2   </span> <a id='x1-80002.2.2'></a>Particle Movement Simulation Improvement</h5>
+<!-- l. 66 --><p class='noindent'>Now, the simulation of large number of particles can be done smoothly, but it is
+totally in chaos(random movements). We can optimize this by predicting the
+next position of particle based on current velocity and external forces , then
+use the predicted position for calculating <span class='cmti-10'>densities </span>and <span class='cmti-10'>pressureForce </span>after
+<span class='cmti-10'>deltaTime</span>. In the particle rendering code, we visualize the speed of particle with
+color.
+</p><!-- l. 69 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='bouncing-sphere'><span class='titlemark'>2.3   </span> <a id='x1-90002.3'></a>Bouncing Sphere</h4>
+<!-- l. 70 --><p class='noindent'>     We added one sphere into our scenario and it will fall from some height and
+splash the fluid particles we implemented. When it collides with the floor,
+it will also be applied with an opposite force which forces the sphere to
+bounce.
+</p><!-- l. 72 --><p class='noindent'>
+</p>
+   <h5 class='subsubsectionHead' id='bouncing-sphere-interacts-with-particles'><span class='titlemark'>2.3.1   </span> <a id='x1-100002.3.1'></a>Bouncing Sphere Interacts with Particles</h5>
+<!-- l. 73 --><p class='noindent'>     In one GPU-processed Unity script file <span class='cmti-10'>Fluid3d.compute</span>, we added one
+function <span class='cmti-10'>ResolveSphereCollision </span>to handle the interaction between sphere and
+particles. When the sphere is in motion, its effective collision radius can increase
+based on its speed, enhancing the realism of interactions by accounting for
+motion blur effects. To be consistent with our intuition, the sphere would be
+applied with force by every fluid surrounding it, so we basically achieve this by
+converting it into interaction on three dimensions of this sphere. On the
+other hand, as the sphere encounters particles, it applies a force that pushes
+them away, proportional to both the penetration depth and the sphere’s
+velocity.
+</p><!-- l. 78 --><p class='noindent'>
+</p>
+   <h5 class='subsubsectionHead' id='bouncing-sphere-interacts-with-floor'><span class='titlemark'>2.3.2   </span> <a id='x1-110002.3.2'></a>Bouncing Sphere Interacts with Floor</h5>
+<!-- l. 79 --><p class='noindent'>     Additionally, the sphere’s collision with the boundaries of its container is
+managed by adjusting its position and inverting its velocity upon contact with the
+edges, damping its speed to simulate energy loss. If the sphere’s velocity falls below a
+threshold, it is effectively halted to prevent unnecessary computations when the
+                                                                  
+
+                                                                  
+motion is negligible.
+</p><!-- l. 85 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='improving-shader'><span class='titlemark'>2.4   </span> <a id='x1-120002.4'></a>Improving Shader</h4>
+<!-- l. 86 --><p class='noindent'>     With the original shader, the particles display like individual balls, which was
+not we wanted. So we made some edition to make them seem more like
+fluid.
+</p>
+   <h5 class='subsubsectionHead' id='transparent-rendering'><span class='titlemark'>2.4.1   </span> <a id='x1-130002.4.1'></a>Transparent Rendering</h5>
+<!-- l. 88 --><p class='noindent'>     We considered introducing transparent rendering and changing the alpha value of
+the particles according to their speed, and it looks good because the area with less
+particles look more transparent. We changed the render queue into <span class='cmti-10'>Transparent </span>and
+used the Blend command <span class='cmti-10'>Blend SrcAlpha OneMinusSrcAlpha </span>in ShaderLab to enable
+transparent rendering.
+</p>
+   <h5 class='subsubsectionHead' id='illumination'><span class='titlemark'>2.4.2   </span> <a id='x1-140002.4.2'></a>Illumination</h5>
+<!-- l. 90 --><p class='noindent'>     We also want to show the effect of light. Because the particles are created after
+the programme started, they cannot be rendered by the light in the scene. So we have
+to calculate the light in the shader. We then referenced the shader part in assignment
+4 to add illumination to the fluid. We chose Blinn-Phong shading, calculating the
+diffuse and mirror reflection. We also adjusted the colour map to make it more close
+to real water.
+</p><!-- l. 92 --><p class='noindent'>
+</p>
+   <h3 class='sectionHead' id='results'><span class='titlemark'>3   </span> <a id='x1-150003'></a>Results</h3>
+<!-- l. 94 --><p class='noindent'>     The below three figures are captured from our current preliminary simulation
 results. We have done a demo-simulation of the fluid. In this scenario, the fluid -
 simulated in the form of liquid drops, falls down from a ”spawner” and spreads across
 the container tank.
-</p><!-- l. 52 --><p class='noindent'>     We then do a preliminary simulation of the ball that falls into the pool and
+</p><!-- l. 96 --><p class='indent'>   We then do a preliminary simulation of the ball that falls into the pool and
 interacts with the liquid drops. Ball falls at different velocities will lead to different
 results of interaction with fluid. For example, when the ball falls from higher places
 or large velocity, more liquid drops will be splashed out, and will be splashed
@@ -70,23 +216,35 @@ higher.
 
                                                                   
 <div class='subfigure'>
-<!-- l. 56 --><p class='noindent'></p><!-- l. 58 --><p class='noindent'><img alt='PIC' height='102' src='water_model_mode.png' width='102' /> <a id='x1-7001r1'></a></p>
+<!-- l. 100 --><p class='noindent'></p><!-- l. 102 --><p class='noindent'><img alt='PIC' height='102' src='water_model_mode.png' width='102' /> <a id='x1-15001r1'></a></p>
 <div class='caption'><span class='id'><span class='cmr-9'>(a) </span></span><span class='content'><span class='cmr-9'>Water in Scene View</span>   </span></div></div>                                            <div class='subfigure'>
-<!-- l. 63 --><p class='noindent'></p><!-- l. 65 --><p class='noindent'><img alt='PIC' height='102' src='water_game_mode.png' width='102' /> <a id='x1-7002r2'></a></p>
+<!-- l. 107 --><p class='noindent'></p><!-- l. 109 --><p class='noindent'><img alt='PIC' height='102' src='water_game_mode.png' width='102' /> <a id='x1-15002r2'></a></p>
 <div class='caption'><span class='id'><span class='cmr-9'>(b) </span></span><span class='content'><span class='cmr-9'>Water in Game Mode</span>  </span></div></div> <div class='subfigure'>
-<!-- l. 69 --><p class='noindent'></p><!-- l. 71 --><p class='noindent'><img alt='PIC' height='102' src='ball_water.png' width='102' /> <a id='x1-7003r3'></a></p>
+<!-- l. 113 --><p class='noindent'></p><!-- l. 115 --><p class='noindent'><img alt='PIC' height='102' src='ball_water.png' width='102' /> <a id='x1-15003r3'></a></p>
 <div class='caption'><span class='id'><span class='cmr-9'>(c) </span></span><span class='content'><span class='cmr-9'>Ball drops in Water</span>    </span></div></div>
                                                                   
 
                                                                   
    </figure>
-   <h3 class='sectionHead' id='references'><span class='titlemark'>4   </span> <a id='x1-80004'></a>References</h3>
-<!-- l. 78 --><p class='noindent'>123
-</p><!-- l. 81 --><p class='noindent'>
+   <h3 class='sectionHead' id='references'><span class='titlemark'>4   </span> <a id='x1-160004'></a>References</h3>
+     <ul class='itemize1'>
+     <li class='itemize'><a class='url' href='https://web.archive.org/web/20140725014123/https://docs.nvidia.com/cuda/s\-amples/5_Simulations/particles/doc/particles.pdf'><span class='cmtt-10'>https://web.archive.org/web/20140725014123/https://docs.nvidia.com/cuda/s\-amples/5_Simulations/particles/doc/particles.pdf</span></a>
+     </li>
+     <li class='itemize'><a class='url' href='https://www.youtube.com/watch?v=rSKMYc1CQHE&amp;t=1396s'><span class='cmtt-10'>https://www.youtube.com/watch?v=rSKMYc1CQHE&amp;t=1396s</span></a></li></ul>
+<!-- l. 129 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead' id='contributions-distribution'><span class='titlemark'>5   </span> <a id='x1-90005'></a>Contributions Distribution</h3>
-<!-- l. 82 --><p class='noindent'>12
-</p>
+   <h3 class='sectionHead' id='contributions-distribution'><span class='titlemark'>5   </span> <a id='x1-170005'></a>Contributions Distribution</h3>
+     <ul class='itemize1'>
+     <li class='itemize'>Jie  Zeng:  Demo  Video;  Implementation  of  Sphere  in  this  simulation;
+     Organizing group meeting and process scheduling.
+     </li>
+     <li class='itemize'>Yeknag Chang: resources collection, implementation of water particles,
+     and parameters tuning for shading.
+     </li>
+     <li class='itemize'>Silu Chu:
+     </li>
+     <li class='itemize'>Liang  Yang:  resources  collection,  parameters  tuning  for  shading  and
+     coloring, writing the milestone and final report website</li></ul>
     
 </body> 
 </html>
