@@ -17,7 +17,7 @@
 
 <h2 class='titleHead'>Team 39 Final Report: Fluid Simulation</h2>
 <div class='author'><span class='cmr-12'>Yekang Chang, Jie Zeng, Silu Chu, Liang Yang</span></div><br />
-<div class='date'><span class='cmr-12'>April 30, 2024</span></div>
+<div class='date'><span class='cmr-12'>April 2024</span></div>
    </div>
 <!-- l. 22 --><p class='indent'>   The demo video link is published at 
 <a class='url' href='https://drive.google.com/file/d/1LMpycsC-qMtw3NhOV_5KMmnzrUuYepJs/view?usp=drive_link'><span class='cmtt-10'>https://drive.google.com/file/d/1LMpycsC-qMtw3NhOV_5KMmnzrUuYepJs/view?usp=drive_link</span></a>.
@@ -136,7 +136,7 @@ cells.
 </p><!-- l. 64 --><p class='noindent'>
 </p>
    <h5 class='subsubsectionHead' id='particle-movement-simulation-improvement'><span class='titlemark'>2.2.2   </span> <a id='x1-80002.2.2'></a>Particle Movement Simulation Improvement</h5>
-<!-- l. 66 --><p class='noindent'>Now, the simulation of large number of particles can be done smoothly, but it is
+<!-- l. 66 --><p class='noindent'>     Now, the simulation of large number of particles can be done smoothly, but it is
 totally in chaos(random movements). We can optimize this by predicting the
 next position of particle based on current velocity and external forces , then
 use the predicted position for calculating <span class='cmti-10'>densities </span>and <span class='cmti-10'>pressureForce </span>after
@@ -194,46 +194,21 @@ to calculate the light in the shader. We then referenced the shader part in assi
 4 to add illumination to the fluid. We chose Blinn-Phong shading, calculating the
 diffuse and mirror reflection. We also adjusted the colour map to make it more close
 to real water.
-</p><!-- l. 92 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead' id='results'><span class='titlemark'>3   </span> <a id='x1-150003'></a>Results</h3>
-<!-- l. 94 --><p class='noindent'>     The below three figures are captured from our current preliminary simulation
-results. We have done a demo-simulation of the fluid. In this scenario, the fluid -
-simulated in the form of liquid drops, falls down from a ”spawner” and spreads across
-the container tank.
-</p><!-- l. 96 --><p class='indent'>   We then do a preliminary simulation of the ball that falls into the pool and
-interacts with the liquid drops. Ball falls at different velocities will lead to different
-results of interaction with fluid. For example, when the ball falls from higher places
-or large velocity, more liquid drops will be splashed out, and will be splashed
-higher.
+   <h5 class='subsubsectionHead' id='wavy-effect'><span class='titlemark'>2.4.3   </span> <a id='x1-150002.4.3'></a>Wavy Effect</h5>
+<!-- l. 92 --><p class='noindent'>     At last, we created some wavy effect of the water. While dragging the scene, the
+pattern of the water surface waves. We implemented this by generating a randomly
+distorted texture map and using the camera direction as parameters to sample colors
+from the texture map.
+</p><!-- l. 94 --><p class='noindent'>
 </p>
-   <figure class='figure'> 
-
+   <h3 class='sectionHead' id='results'><span class='titlemark'>3   </span> <a id='x1-160003'></a>Results</h3>
                                                                   
 
                                                                   
-                                                                  
-
-                                                                  
-<div class='subfigure'>
-<!-- l. 100 --><p class='noindent'></p><!-- l. 102 --><p class='noindent'><img alt='PIC' height='102' src='water_model_mode.png' width='102' /> <a id='x1-15001r1'></a></p>
-<div class='caption'><span class='id'><span class='cmr-9'>(a) </span></span><span class='content'><span class='cmr-9'>Water in Scene View</span>   </span></div></div>                                            <div class='subfigure'>
-<!-- l. 107 --><p class='noindent'></p><!-- l. 109 --><p class='noindent'><img alt='PIC' height='102' src='water_game_mode.png' width='102' /> <a id='x1-15002r2'></a></p>
-<div class='caption'><span class='id'><span class='cmr-9'>(b) </span></span><span class='content'><span class='cmr-9'>Water in Game Mode</span>  </span></div></div> <div class='subfigure'>
-<!-- l. 113 --><p class='noindent'></p><!-- l. 115 --><p class='noindent'><img alt='PIC' height='102' src='ball_water.png' width='102' /> <a id='x1-15003r3'></a></p>
-<div class='caption'><span class='id'><span class='cmr-9'>(c) </span></span><span class='content'><span class='cmr-9'>Ball drops in Water</span>    </span></div></div>
-                                                                  
-
-                                                                  
-   </figure>
-   <h3 class='sectionHead' id='references'><span class='titlemark'>4   </span> <a id='x1-160004'></a>References</h3>
-     <ul class='itemize1'>
-     <li class='itemize'><a class='url' href='https://web.archive.org/web/20140725014123/https://docs.nvidia.com/cuda/s\-amples/5_Simulations/particles/doc/particles.pdf'><span class='cmtt-10'>https://web.archive.org/web/20140725014123/https://docs.nvidia.com/cuda/s\-amples/5_Simulations/particles/doc/particles.pdf</span></a>
-     </li>
-     <li class='itemize'><a class='url' href='https://www.youtube.com/watch?v=rSKMYc1CQHE&amp;t=1396s'><span class='cmtt-10'>https://www.youtube.com/watch?v=rSKMYc1CQHE&amp;t=1396s</span></a></li></ul>
-<!-- l. 129 --><p class='noindent'>
+<!-- l. 99 --><p class='noindent'>
 </p>
-   <h3 class='sectionHead' id='contributions-distribution'><span class='titlemark'>5   </span> <a id='x1-170005'></a>Contributions Distribution</h3>
+   <h3 class='sectionHead' id='contributions-distribution'><span class='titlemark'>4   </span> <a id='x1-170004'></a>Contributions Distribution</h3>
      <ul class='itemize1'>
      <li class='itemize'>Jie  Zeng:  Demo  Video;  Implementation  of  Sphere  in  this  simulation;
      Organizing group meeting and process scheduling.
@@ -241,7 +216,8 @@ higher.
      <li class='itemize'>Yeknag Chang: resources collection, implementation of water particles,
      and parameters tuning for shading.
      </li>
-     <li class='itemize'>Silu Chu:
+     <li class='itemize'>Silu Chu: implementation of coding for shaders, parameters tuning for
+     shading and coloring.
      </li>
      <li class='itemize'>Liang  Yang:  resources  collection,  parameters  tuning  for  shading  and
      coloring, writing the milestone and final report website</li></ul>
