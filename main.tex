@@ -3,7 +3,7 @@
 
 \title{Team 39 Final Report: Fluid Simulation}
 \author{Yekang Chang, Jie Zeng, Silu Chu, Liang Yang}
-% \date{April 2024}
+\date{April 2024}
 \usepackage{hyperref}
 \usepackage{listings}
 \newcommand{\cmdname}[1]{\texttt{#1}}
@@ -63,7 +63,7 @@ The \textit{UpdateSpatialLookup()} function will update the \textit{spatialLooku
 
 \subsubsection{Particle Movement Simulation Improvement}
 
-Now, the simulation of large number of particles can be done smoothly, but it is totally in chaos(random movements). We can optimize this by predicting the next position of particle based on current velocity and external forces , then use the predicted position for calculating \textit{densities} and \textit{pressureForce} after \textit{deltaTime}. In the particle rendering code, we visualize the speed of particle with color.
+\hspace{1em} Now, the simulation of large number of particles can be done smoothly, but it is totally in chaos(random movements). We can optimize this by predicting the next position of particle based on current velocity and external forces , then use the predicted position for calculating \textit{densities} and \textit{pressureForce} after \textit{deltaTime}. In the particle rendering code, we visualize the speed of particle with color.
 
 
 \subsection{Bouncing Sphere}
@@ -88,49 +88,19 @@ Now, the simulation of large number of particles can be done smoothly, but it is
 \hspace{1em} We considered introducing transparent rendering and changing the alpha value of the particles according to their speed, and it looks good because the area with less particles look more transparent. We changed the render queue into \textit{Transparent} and used the Blend command \textit{Blend SrcAlpha OneMinusSrcAlpha} in ShaderLab to enable transparent rendering.
 \subsubsection{Illumination}
 \hspace{1em} We also want to show the effect of light. Because the particles are created after the programme started, they cannot be rendered by the light in the scene. So we have to calculate the light in the shader. We then referenced the shader part in assignment 4 to add illumination to the fluid. We chose Blinn-Phong shading, calculating the diffuse and mirror reflection. We also adjusted the colour map to make it more close to real water.
+\subsubsection{Wavy Effect}
+\hspace{1em} At last, we created some wavy effect of the water. While dragging the scene, the pattern of the water surface waves. We implemented this by generating a randomly distorted texture map and using the camera direction as parameters to sample colors from the texture map.
 
 \section{Results}
 
-\hspace{1em} The below three figures are captured from our current preliminary simulation results. We have done a demo-simulation of the fluid. In this scenario, the fluid - simulated in the form of liquid drops, falls down from a "spawner" and spreads across the container tank. 
 
-We then do a preliminary simulation of the ball that falls into the pool and interacts with the liquid drops. Ball falls at different velocities will lead to different results of interaction with fluid. For example, when the ball falls from higher places or large velocity, more liquid drops will be splashed out, and will be splashed higher. 
-
-\begin{figure}[h]
-    \centering
-    \begin{subfigure}[b]{0.33\textwidth}
-        \centering
-        \includegraphics[width=0.9\textwidth]{water_model_mode.png}
-        \caption{Water in Scene View}
-        \label{fig:higher_velocity}
-    \end{subfigure}%
-    \hfill % Adds horizontal space between the subfigures
-    \begin{subfigure}[b]{0.33\textwidth}
-        \centering
-        \includegraphics[width=0.9\textwidth]{water_game_mode.png}
-        \caption{Water in Game Mode}
-        \label{fig:lower_velocity}
-    \end{subfigure}
-        \begin{subfigure}[b]{0.33\textwidth}
-        \centering
-        \includegraphics[width=0.9\textwidth]{ball_water.png}
-        \caption{Ball drops in Water}
-        \label{fig:lower_velocity}
-    \end{subfigure}
-\end{figure}
-
-\section{References}
-\begin{itemize}
-    \item \url{https://web.archive.org/web/20140725014123/https://docs.nvidia.com/cuda/s\-amples/5_Simulations/particles/doc/particles.pdf}
-    \item 
-    \url{https://www.youtube.com/watch?v=rSKMYc1CQHE&t=1396s}
-\end{itemize}
 
 
 \section{Contributions Distribution}
 \begin{itemize}
     \item Jie Zeng: Demo Video; Implementation of Sphere in this simulation; Organizing group meeting and process scheduling.
     \item Yeknag Chang: resources collection, implementation of water particles, and parameters tuning for shading.
-    \item Silu Chu: 
+    \item Silu Chu: implementation of coding for shaders, parameters tuning for shading and coloring.
     \item Liang Yang: resources collection, parameters tuning for shading and coloring, writing the milestone and final report website
 \end{itemize}
     
